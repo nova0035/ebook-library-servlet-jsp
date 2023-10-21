@@ -1,3 +1,26 @@
+<% 
+    Cookie ck[] = request.getCookies();
+    boolean exists = false;
+
+    if (ck != null) {
+        for (Cookie c : ck) {
+            if (c.getName().equals("username")) {
+                exists = true;
+                break;
+            }
+        }
+    }
+
+    if (exists) {
+%>
+    <script>
+        alert("Already Logged In. Access Denied.");
+        window.location.href = "index.jsp";
+    </script>
+<%
+    }
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 
