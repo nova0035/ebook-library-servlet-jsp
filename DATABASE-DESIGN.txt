@@ -4,5 +4,5 @@ TABLE 1 : users ( store users details like username , email , password )
 
     COLUMN 1 : username ( VARCHAR )
     COLUMN 2 : user_email ( VARCHAR )
-    COLUMN 3 : password ( VARCHAR )
+    COLUMN 3 : user_password ( VARCHAR )
     
