@@ -1,4 +1,5 @@
 <%@ page import="java.sql.*" %>
+<%@ page import="java.util.ArrayList" %>
 
 <% 
     Cookie ck[] = request.getCookies();
@@ -59,7 +60,7 @@
                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ebooks", "root", "");
 
                 String submitButton = request.getParameter("submitbutton");
-
+                Statement stmt = conn.createStatement();
                 if(submitButton!=null){
 
                     String searchInput = request.getParameter("userinputbook");
@@ -68,7 +69,7 @@
 
                         searchInput = searchInput.toLowerCase();
 
-                        Statement stmt = conn.createStatement();
+                        
                         ResultSet allBooksData = stmt.executeQuery("SELECT * FROM books_data;");
 
                         if(!allBooksData.next()){
@@ -85,6 +86,37 @@
                                     keyword = keyword.toLowerCase();
 
                                     if(searchInput.equals(keyword)){
+
+                                        Cookie cookies[] = request.getCookies();
+                                        boolean historyExists = false;
+
+                                        for(Cookie cks : cookies){
+                                            if(cks.getName().equals("bookSearchHistory")){
+                                                historyExists = true;
+
+                                                String oldValue = cks.getValue();
+                                                String searchKeywordsOld[] = oldValue.split(",");
+
+                                                boolean keywordExistsHistory = false;
+                                                for(String kywrd : searchKeywordsOld){
+                                                    if(kywrd.equals(searchInput)){
+                                                        keywordExistsHistory = true;
+                                                    }
+                                                }
+
+                                                if(!keywordExistsHistory){
+                                                    String newValue = oldValue + "," + searchInput;
+                                                    cks.setValue(newValue);
+                                                    cks.setMaxAge(60*60);
+                                                }
+                                            }
+                                        }
+
+                                        if(!historyExists){
+                                            Cookie historyCookie = new Cookie("bookSearchHistory",searchInput);
+                                            historyCookie.setMaxAge(60*60);
+                                            response.addCookie(historyCookie);
+                                        }
 
                                         String name = allBooksData.getString(1);
                                         String authorName = allBooksData.getString(2);
@@ -119,6 +151,55 @@
 
                 }
                 else{
+
+                    Cookie ckes[] = request.getCookies();
+
+                    ResultSet booksdata = stmt.executeQuery("SELECT * FROM books_data;");
+
+                    if(booksdata.next()){
+
+                        for(Cookie c : ckes){
+                            if(c.getName().equals("bookSearchHistory")){
+                                String searchedKeywords[] = c.getValue().split(",");
+
+                                for(String keyword : searchedKeywords){
+
+                                    do{
+
+                                        String booksGenere[] = booksdata.getString(6).split(",");
+
+                                        for(String gen : booksGenere){
+                                            if(gen.equals(keyword)){
+
+                                                String name = booksdata.getString(1);
+                                                String authorName = booksdata.getString(2);
+                                                String bookLocation = booksdata.getString(3);
+                                                String posterLocation = booksdata.getString(4);
+                                                String fullName = booksdata.getString(5);
+
+                                                out.print("<div class='col-lg-4'>");
+                                                out.print("<div class='w3-card-4 box'>");
+                                                out.print("<img src='POSTER/" + posterLocation + "' title='" + fullName + " - " + authorName + "'>");
+                                                out.print("<div class='w3-container w3-center text'>");
+                                                out.print("<p>" + name + "</p>");
+                                                out.print("<a href='BOOK/" + bookLocation + "' class='button-30 btn' role='button' target='_blank'>View</a>");
+                                                out.print("<a href='BOOK/" + bookLocation + "' class='button-30' download='demopdf'>Download</a>");
+                                                out.print("</div>");
+                                                out.print("</div>");
+                                                out.print("</div>");
+
+                                            }
+                                        }
+
+                                    }while(booksdata.next());
+
+                                }
+                            }
+                        }
+
+                    }
+
+                    
 
                 }
                
