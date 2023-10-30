@@ -28,7 +28,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Login</title>
-        <link rel="icon" type="image/png" href="IMAGES/LOGIN_ICON.png"/>
+    <link rel="icon" href="IMAGES/MAIN_ICON.png" type="image/icon type">
          <link rel="stylesheet" href="STYLES/buttonstyle.css"> <!-- for button style -->
          <link rel="stylesheet" href="STYLES/formstyle.css"> <!-- for input form style-->
         
