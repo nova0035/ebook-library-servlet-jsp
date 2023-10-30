@@ -5,4 +5,8 @@ TABLE 1 : users ( store users details like username , email , password )
     COLUMN 1 : username ( VARCHAR )
     COLUMN 2 : user_email ( VARCHAR )
     COLUMN 3 : user_password ( VARCHAR )
+<<<<<<< HEAD
     
+=======
+    
+>>>>>>> 74b3c3335fdd970a32b6499b503043fa8fefe088

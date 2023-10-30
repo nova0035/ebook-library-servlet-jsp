@@ -31,15 +31,19 @@ public class LoginServlet extends HttpServlet {
 
                     // Display a success message with an alert box and redirect
                     out.println("<script>alert('Login Successful: " + username + "'); window.location.href='index.jsp';</script>");
-                } else {
+                }
+                else {
                     // Display an alert for an incorrect password
                     out.println("<script>alert('Password Is Invalid'); window.location.href='login.jsp';</script>");
                 }
-            } else {
+            }
+            
+            else {
                 // Display an alert for username or email not found
                 out.println("<script>alert('Username or Email Not Found'); window.location.href='login.jsp';</script>");
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             out.print(e.getMessage());
         }
 

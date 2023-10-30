@@ -14,7 +14,7 @@
     if (exists) {
 %>
     <script>
-        alert("Already Logged In. Access Denied.");
+        alert("Page Access Denied. You Need To Logout To Access This Page.");
         window.location.href = "index.jsp";
     </script>
 <%
