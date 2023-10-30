@@ -19,6 +19,7 @@ header {
             position: absolute;
             right: 0;
             padding: 0;
+            left:30px;
         }
 
         .profile-image {
@@ -32,6 +33,10 @@ header {
         }
         .profileimg:hover{
             cursor: pointer;
+        }
+
+        .icon , .icon span{
+            margin-right:10px;
         }
 
         @media (max-width: 768px) {

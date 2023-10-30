@@ -1,3 +1,5 @@
+<%@ page import="java.sql.*" %>
+
 <% 
     Cookie ck[] = request.getCookies();
     boolean exists = false;
@@ -34,6 +36,7 @@
     <link rel="icon" href="IMAGES/MAIN_ICON.png" type="image/icon type">
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="STYLES/searchbookstyle.css">
+    <link rel="stylesheet" type="text/css" href="STYLES/buttonstyle.css">
     
   </head>
   <body>
@@ -50,6 +53,79 @@
 
     <div class="container">
         <div class="row d-flex">
+
+        <%
+            try {
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ebooks", "root", "");
+
+                String submitButton = request.getParameter("submitbutton");
+
+                if(submitButton!=null){
+
+                    String searchInput = request.getParameter("userinputbook");
+                    if(!searchInput.isEmpty()){
+
+
+                        searchInput = searchInput.toLowerCase();
+
+                        Statement stmt = conn.createStatement();
+                        ResultSet allBooksData = stmt.executeQuery("SELECT * FROM books_data;");
+
+                        if(!allBooksData.next()){
+                            out.print("<script>alert('No Books Found In Database , Try Again After Some Time');</script>;");
+                        }
+                        else{
+
+                            do{
+
+                                String keywords[] = allBooksData.getString(6).split(",");
+
+                                for(String keyword : keywords){
+                                    
+                                    keyword = keyword.toLowerCase();
+
+                                    if(searchInput.equals(keyword)){
+
+                                        String name = allBooksData.getString(1);
+                                        String authorName = allBooksData.getString(2);
+                                        String bookLocation = allBooksData.getString(3);
+                                        String posterLocation = allBooksData.getString(4);
+                                        String fullName = allBooksData.getString(5);
+
+                                        out.print("<div class='col-lg-4'>");
+                                        out.print("<div class='w3-card-4 box'>");
+                                        out.print("<img src='POSTER/" + posterLocation + "' title='" + fullName + " - " + authorName + "'>");
+                                        out.print("<div class='w3-container w3-center text'>");
+                                        out.print("<p>" + name + "</p>");
+                                        out.print("<a href='BOOK/" + bookLocation + "' class='button-30 btn' role='button' target='_blank'>View</a>");
+                                        out.print("<a href='BOOK/" + bookLocation + "' class='button-30' download='demopdf'>Download</a>");
+                                        out.print("</div>");
+                                        out.print("</div>");
+                                        out.print("</div>");
+                                    }
+                                }
+
+
+                            }
+                            while(allBooksData.next());
+                        }
+
+                    }
+                    else{
+
+                        out.print("<script>alert('Please Enter Keyword Or Book Name To Search');</script>;");
+
+                    }
+
+                }
+                else{
+
+                }
+               
+            } catch (Exception e) {
+                out.print(e.getMessage());
+            }
+        %>
 
         <!-- <?php 
 
