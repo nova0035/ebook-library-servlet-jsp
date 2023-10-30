@@ -5,8 +5,13 @@ TABLE 1 : users ( store users details like username , email , password )
     COLUMN 1 : username ( VARCHAR )
     COLUMN 2 : user_email ( VARCHAR )
     COLUMN 3 : user_password ( VARCHAR )
-<<<<<<< HEAD
-    
-=======
-    
->>>>>>> 74b3c3335fdd970a32b6499b503043fa8fefe088
+
+TABLE 2 : books_data ( stores the books information like its name book location author name )
+
+	column1 : book_name , varchar(255)
+        column2 : author_name , varchar(255)
+        column3 : booklocation , varchar(255)
+        column4 : poster_location , varchar(255)
+        column5 : fullname , varchar(255)
+        column6 : keywords , varchar(255)
+        column7 : id , int(10)
