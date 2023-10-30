@@ -62,8 +62,8 @@
             //     echo '<img src="' . $posterLocation . '" title="' .$fullName .' - '. $authorName . '">';
             //     echo '<div class="w3-container w3-center text">';
             //     echo '<p>' . $name . '</p>';
-            //     echo '<a href="http://localhost/IWD-MICRO-PROJECT/' . $bookLocation . '" class="button-30 btn" role="button" target="_blank">View</a>';
-            //     echo '<a href="http://localhost/IWD-MICRO-PROJECT/' . $bookLocation . '" class="button-30" download="demopdf">Download</a>';
+            //     echo '<a href="POSTER/' . $bookLocation . '" class="button-30 btn" role="button" target="_blank">View</a>';
+            //     echo '<a href="BOOK/' . $bookLocation . '" class="button-30" download="demopdf">Download</a>';
             //     echo '</div>';
             //     echo '</div>';
             //     echo '</div>';
