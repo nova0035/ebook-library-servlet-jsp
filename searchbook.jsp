@@ -126,14 +126,15 @@
 
                                         out.print("<div class='col-lg-4'>");
                                         out.print("<div class='w3-card-4 box'>");
-                                        out.print("<img src='POSTER/" + posterLocation + "' title='" + fullName + " - " + authorName + "'>");
+                                        out.print("<img src='http://localhost:9090/ebook-library-servlet-jsp/POSTER/" + posterLocation + "' title='" + fullName + " - " + authorName + "'>");
                                         out.print("<div class='w3-container w3-center text'>");
                                         out.print("<p>" + name + "</p>");
-                                        out.print("<a href='BOOK/" + bookLocation + "' class='button-30 btn' role='button' target='_blank'>View</a>");
-                                        out.print("<a href='BOOK/" + bookLocation + "' class='button-30' download='demopdf'>Download</a>");
+                                        out.print("<a href='BOOKS/" + bookLocation + "' class='button-30 btn' role='button' target='_blank'>View</a>");
+                                        out.print("<a href='BOOKS/" + bookLocation + "' class='button-30' download='" + bookLocation + "'>Download</a>");
                                         out.print("</div>");
                                         out.print("</div>");
                                         out.print("</div>");
+
                                     }
                                 }
 

@@ -70,10 +70,10 @@
     </div>
 
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
     document.getElementById("myButton").onclick = function () {
-        location.href = "searchbook.php";
+        location.href = "searchbook.jsp";
     };
-</script> -->
+</script>
 </body>
 </html>
